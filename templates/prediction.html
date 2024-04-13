@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blindness Detection - Result</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: cyan;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+
+        img {
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        a {
+            color: #28a745; /* Green color for the link */
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Classification Result</h1>
+    
+    <p>Predicted Class: {{ predicted_class }}</p>
+
+    <!-- Display the preview image -->
+    <img src="{{ image_path }}" alt="Uploaded Image">
+
+    <br>
+    <a href="/">Back to Upload</a>
+</body>
+</html>

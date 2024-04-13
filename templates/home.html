@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diabetic Retinopathy Blindness Detection</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('images.jpg');
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: cyan;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            color: white;
+            background-color: #333;
+            padding: 10px;
+            border: 1px solid #555;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            color: white;
+            background-color: #28a745; /* Green color */
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        p.error {
+            color: red;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .preview-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .preview-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .preview-overlay span {
+            color: white;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .preview-container:hover .preview-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diabetic Retinopathy Blindness Detection</h1>
+
+    <div class="preview-container">
+        <img id="preview" src="#" alt="Image Preview">
+        <div class="preview-overlay">
+            <span>Hover to preview</span>
+        </div>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label for="file">Upload an Image:</label>
+        <input type="file" name="file" id="file" accept="image/*">
+        <input type="submit" value="Predict Blindness">
+    </form>
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <script>
+        const fileInput = document.getElementById('file');
+        const preview = document.getElementById('preview');
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                preview.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+
+</html>
